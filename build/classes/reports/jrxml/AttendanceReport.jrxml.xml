@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports 
+              http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" 
+              name="AttendanceReport" 
+              pageWidth="842" 
+              pageHeight="595" 
+              orientation="Landscape"
+              columnWidth="802" 
+              leftMargin="20" 
+              rightMargin="20" 
+              topMargin="20" 
+              bottomMargin="20">
+    
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    
+    <!-- Fields from database query -->
+    <field name="attendance_id" class="java.lang.Integer"/>
+    <field name="student_name" class="java.lang.String"/>
+    <field name="course_code" class="java.lang.String"/>
+    <field name="course_name" class="java.lang.String"/>
+    <field name="attendance_date" class="java.sql.Date"/>
+    <field name="status" class="java.lang.String"/>
+    <field name="remarks" class="java.lang.String"/>
+    
+    <!-- Variables -->
+    <variable name="RECORD_COUNT" class="java.lang.Integer" calculation="Count">
+        <variableExpression><![CDATA[$F{attendance_id}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    
+    <!-- Title Band -->
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="802" height="35" forecolor="#2C3E50"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="24" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ATTENDANCE REPORT]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="35" width="802" height="20" forecolor="#7F8C8D"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="12" isBold="false"/>
+                </textElement>
+                <text><![CDATA[Smart Academic Management System (SAMS)]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="78" width="802" height="1" forecolor="#34495E"/>
+                <graphicElement>
+                    <pen lineWidth="2.0"/>
+                </graphicElement>
+            </line>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement x="702" y="55" width="100" height="20" forecolor="#7F8C8D"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    
+    <!-- Column Header Band -->
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="60" height="30" forecolor="#FFFFFF" backcolor="#3498DB"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#2C3E50"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Att. ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="60" y="0" width="150" height="30" forecolor="#FFFFFF" backcolor="#3498DB"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#2C3E50"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Student Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="210" y="0" width="80" height="30" forecolor="#FFFFFF" backcolor="#3498DB"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#2C3E50"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Course Code]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="290" y="0" width="200" height="30" forecolor="#FFFFFF" backcolor="#3498DB"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#2C3E50"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Course Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="490" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#3498DB"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#2C3E50"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Date]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="590" y="0" width="80" height="30" forecolor="#FFFFFF" backcolor="#3498DB"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#2C3E50"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Status]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="670" y="0" width="132" height="30" forecolor="#FFFFFF" backcolor="#3498DB"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#2C3E50"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Remarks]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    
+    <!-- Detail Band -->
+    <detail>
+        <band height="25" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="60" height="25"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{attendance_id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="60" y="0" width="150" height="25"/>
+                <box leftPadding="5">
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{student_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="210" y="0" width="80" height="25"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{course_code}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="290" y="0" width="200" height="25"/>
+                <box leftPadding="5">
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{course_name}]]></textFieldExpression>
+            </textField>
+            <textField pattern="dd/MM/yyyy">
+                <reportElement x="490" y="0" width="100" height="25"/>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{attendance_date}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement mode="Opaque" x="590" y="0" width="80" height="25" 
+                    forecolor="#FFFFFF"
+                    backcolor="#27AE60">
+                    <printWhenExpression><![CDATA[$F{status}.equals("Present")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement mode="Opaque" x="590" y="0" width="80" height="25" 
+                    forecolor="#FFFFFF"
+                    backcolor="#E74C3C">
+                    <printWhenExpression><![CDATA[$F{status}.equals("Absent")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement mode="Opaque" x="590" y="0" width="80" height="25" 
+                    forecolor="#FFFFFF"
+                    backcolor="#F39C12">
+                    <printWhenExpression><![CDATA[$F{status}.equals("Late")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement mode="Opaque" x="590" y="0" width="80" height="25" 
+                    forecolor="#FFFFFF"
+                    backcolor="#9B59B6">
+                    <printWhenExpression><![CDATA[$F{status}.equals("Excused")]]></printWhenExpression>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="670" y="0" width="132" height="25"/>
+                <box leftPadding="5">
+                    <pen lineWidth="0.5" lineColor="#BDC3C7"/>
+                </box>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    
+    <!-- Page Footer -->
+    <pageFooter>
+        <band height="30" splitType="Stretch">
+            <line>
+                <reportElement x="0" y="0" width="802" height="1" forecolor="#34495E"/>
+            </line>
+            <textField>
+                <reportElement x="0" y="5" width="200" height="20" forecolor="#7F8C8D"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Total Records: " + $V{RECORD_COUNT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="702" y="5" width="80" height="20" forecolor="#7F8C8D"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement x="782" y="5" width="20" height="20" forecolor="#7F8C8D"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Arial" size="9"/>
+                </textElement>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
