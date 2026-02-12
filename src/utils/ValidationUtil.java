@@ -38,13 +38,13 @@ public class ValidationUtil {
                                       JOptionPane.ERROR_MESSAGE);
     }
     
-    // Show success message
+   
     public static void showSuccess(String message) {
         JOptionPane.showMessageDialog(null, message, "Success", 
                                       JOptionPane.INFORMATION_MESSAGE);
     }
     
-    // Show confirmation dialog
+   
     public static boolean showConfirmation(String message) {
         int result = JOptionPane.showConfirmDialog(null, message, "Confirm", 
                                                    JOptionPane.YES_NO_OPTION);

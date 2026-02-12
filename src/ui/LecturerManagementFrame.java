@@ -47,7 +47,7 @@ public class LecturerManagementFrame extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        // Row 0
+      
         gbc.gridx = 0; gbc.gridy = 0;
         panel.add(new JLabel("Lecturer ID:"), gbc);
         txtLecturerId = new JTextField(15);
@@ -60,7 +60,7 @@ public class LecturerManagementFrame extends JFrame {
         gbc.gridx = 3;
         panel.add(txtFirstName, gbc);
         
-        // Row 1
+
         gbc.gridx = 0; gbc.gridy = 1;
         panel.add(new JLabel("Last Name:"), gbc);
         txtLastName = new JTextField(15);
@@ -73,7 +73,7 @@ public class LecturerManagementFrame extends JFrame {
         gbc.gridx = 3;
         panel.add(txtEmail, gbc);
         
-        // Row 2
+      
         gbc.gridx = 0; gbc.gridy = 2;
         panel.add(new JLabel("Phone:"), gbc);
         txtPhone = new JTextField(15);
@@ -86,7 +86,7 @@ public class LecturerManagementFrame extends JFrame {
         gbc.gridx = 3;
         panel.add(txtDepartment, gbc);
         
-        // Row 3
+     
         gbc.gridx = 0; gbc.gridy = 3;
         panel.add(new JLabel("Qualification:"), gbc);
         txtQualification = new JTextField(15);
@@ -94,7 +94,7 @@ public class LecturerManagementFrame extends JFrame {
         gbc.gridwidth = 3;
         panel.add(txtQualification, gbc);
         
-        // Buttons
+        
         gbc.gridx = 0; gbc.gridy = 4;
         gbc.gridwidth = 4;
         panel.add(createButtonPanel(), gbc);

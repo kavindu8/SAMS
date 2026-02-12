@@ -13,7 +13,7 @@ public class Student {
     private String status;
     private String address;
     
-    // Constructors
+
     public Student() {}
     
     public Student(String studentId, String firstName, String lastName, 
@@ -27,7 +27,7 @@ public class Student {
         this.status = "Active";
     }
     
-    // Getters and Setters
+
     public String getStudentId() { return studentId; }
     public void setStudentId(String studentId) { this.studentId = studentId; }
     

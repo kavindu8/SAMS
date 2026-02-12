@@ -38,13 +38,13 @@ public class CourseManagementFrame extends JFrame {
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
-        // Form Panel
+
         JPanel formPanel = createFormPanel();
         
-        // Table Panel
+     
         JPanel tablePanel = createTablePanel();
         
-        // Split Pane
+       
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, formPanel, tablePanel);
         splitPane.setDividerLocation(300);
         
@@ -59,7 +59,7 @@ public class CourseManagementFrame extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        // Row 0
+       
         gbc.gridx = 0; gbc.gridy = 0;
         panel.add(new JLabel("Course ID:"), gbc);
         txtCourseId = new JTextField(15);
@@ -72,7 +72,7 @@ public class CourseManagementFrame extends JFrame {
         gbc.gridx = 3;
         panel.add(txtCourseCode, gbc);
         
-        // Row 1
+      
         gbc.gridx = 0; gbc.gridy = 1;
         panel.add(new JLabel("Course Name:"), gbc);
         txtCourseName = new JTextField(15);
@@ -85,7 +85,7 @@ public class CourseManagementFrame extends JFrame {
         gbc.gridx = 3;
         panel.add(txtCredits, gbc);
         
-        // Row 2
+      
         gbc.gridx = 0; gbc.gridy = 2;
         panel.add(new JLabel("Department:"), gbc);
         txtDepartment = new JTextField(15);
@@ -98,7 +98,7 @@ public class CourseManagementFrame extends JFrame {
         gbc.gridx = 3;
         panel.add(cmbLecturer, gbc);
         
-        // Row 3
+      
         gbc.gridx = 0; gbc.gridy = 3;
         panel.add(new JLabel("Description:"), gbc);
         txtDescription = new JTextArea(3, 15);
@@ -107,7 +107,7 @@ public class CourseManagementFrame extends JFrame {
         gbc.gridwidth = 3;
         panel.add(scrollPane, gbc);
         
-        // Buttons
+      
         gbc.gridx = 0; gbc.gridy = 4;
         gbc.gridwidth = 4;
         panel.add(createButtonPanel(), gbc);
@@ -148,7 +148,7 @@ public class CourseManagementFrame extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Course List"));
         
-        // Search Panel
+    
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         searchPanel.add(new JLabel("Search:"));
         txtSearch = new JTextField(20);
@@ -156,7 +156,7 @@ public class CourseManagementFrame extends JFrame {
         searchPanel.add(txtSearch);
         searchPanel.add(btnSearch);
         
-        // Table
+       
         String[] columns = {"Course ID", "Course Name", "Code", "Credits", "Department", "Lecturer"};
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
@@ -295,7 +295,7 @@ public class CourseManagementFrame extends JFrame {
         course.setDepartment(txtDepartment.getText().trim());
         course.setDescription(txtDescription.getText().trim());
         
-        // Extract lecturer ID
+        
         String selectedLecturer = (String) cmbLecturer.getSelectedItem();
         if (selectedLecturer != null && !selectedLecturer.startsWith("--")) {
             String lecturerId = selectedLecturer.split(" - ")[0];

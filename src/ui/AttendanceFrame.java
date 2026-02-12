@@ -48,7 +48,7 @@ public class AttendanceFrame extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        // Row 0
+      
         gbc.gridx = 0; gbc.gridy = 0;
         panel.add(new JLabel("Student Enrollment:"), gbc);
         cmbEnrollment = new JComboBox<>();
@@ -56,7 +56,7 @@ public class AttendanceFrame extends JFrame {
         gbc.gridwidth = 3;
         panel.add(cmbEnrollment, gbc);
         
-        // Row 1
+    
         gbc.gridx = 0; gbc.gridy = 1;
         gbc.gridwidth = 1;
         panel.add(new JLabel("Date (yyyy-MM-dd):"), gbc);
@@ -70,7 +70,7 @@ public class AttendanceFrame extends JFrame {
         gbc.gridx = 3;
         panel.add(cmbStatus, gbc);
         
-        // Row 2
+     
         gbc.gridx = 0; gbc.gridy = 2;
         panel.add(new JLabel("Remarks:"), gbc);
         txtRemarks = new JTextField();
@@ -78,7 +78,7 @@ public class AttendanceFrame extends JFrame {
         gbc.gridwidth = 3;
         panel.add(txtRemarks, gbc);
         
-        // Buttons
+        
         gbc.gridx = 0; gbc.gridy = 3;
         gbc.gridwidth = 4;
         panel.add(createButtonPanel(), gbc);

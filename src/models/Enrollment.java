@@ -11,14 +11,14 @@ public class Enrollment {
     private String academicYear;
     private String status;
     
-    // For display purposes
+  
     private String studentName;
     private String courseName;
     private String courseCode;
     
     public Enrollment() {}
     
-    // Getters and Setters
+
     public int getEnrollmentId() { return enrollmentId; }
     public void setEnrollmentId(int enrollmentId) { this.enrollmentId = enrollmentId; }
     

@@ -48,7 +48,7 @@ public class EnrollmentFrame extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
         
-        // Row 0 - Student & Course
+        
         gbc.gridx = 0; gbc.gridy = 0;
         panel.add(new JLabel("Student:"), gbc);
         cmbStudent = new JComboBox<>();
