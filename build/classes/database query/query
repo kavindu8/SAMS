@@ -1,1 +1,283 @@
 
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 12, 2026 at 12:57 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `sams_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assessments`
+--
+
+CREATE TABLE `assessments` (
+  `assessment_id` int(11) NOT NULL,
+  `enrollment_id` int(11) NOT NULL,
+  `assessment_type` enum('Assignment','Quiz','Midterm','Final') NOT NULL,
+  `marks_obtained` decimal(5,2) DEFAULT NULL,
+  `max_marks` decimal(5,2) NOT NULL,
+  `assessment_date` date DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE `attendance` (
+  `attendance_id` int(11) NOT NULL,
+  `enrollment_id` int(11) NOT NULL,
+  `attendance_date` date NOT NULL,
+  `status` enum('Present','Absent','Late','Excused') DEFAULT 'Present',
+  `remarks` text DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`attendance_id`, `enrollment_id`, `attendance_date`, `status`, `remarks`, `created_date`) VALUES
+(3, 3, '2026-02-10', 'Absent', '', '2026-02-10 14:51:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `course_id` int(11) NOT NULL,
+  `course_code` varchar(20) NOT NULL,
+  `course_name` varchar(100) NOT NULL,
+  `department` varchar(100) DEFAULT NULL,
+  `credits` int(11) DEFAULT NULL,
+  `lecturer_id` int(11) DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_code`, `course_name`, `department`, `credits`, `lecturer_id`, `created_date`) VALUES
+(1, 'CS101', 'Introduction to Programming', 'Computer Science', 3, NULL, '2026-02-10 06:34:22'),
+(2, 'CS102', 'Data Structures', 'Computer Science', 3, 6, '2026-02-10 06:34:22'),
+(3, 'CS201', 'Database Systems', 'Computer Science', 4, NULL, '2026-02-10 06:34:22'),
+(4, 'CS202', 'Web Development', 'Computer Science', 3, NULL, '2026-02-10 06:34:22'),
+(5, 'CS301', 'Software Engineering', 'Computer Science', 4, 4, '2026-02-10 06:34:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enrollments`
+--
+
+CREATE TABLE `enrollments` (
+  `enrollment_id` int(11) NOT NULL,
+  `student_id` varchar(20) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `enrollment_date` date DEFAULT curdate(),
+  `semester` varchar(20) DEFAULT NULL,
+  `academic_year` varchar(10) DEFAULT NULL,
+  `status` enum('Enrolled','Completed','Dropped') DEFAULT 'Enrolled',
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `enrollments`
+--
+
+INSERT INTO `enrollments` (`enrollment_id`, `student_id`, `course_id`, `enrollment_date`, `semester`, `academic_year`, `status`, `created_date`) VALUES
+(3, 'S1124', 5, '2026-02-10', '1st sem 1', '2026', 'Enrolled', '2026-02-10 14:51:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `student_id` varchar(20) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `enrollment_date` date DEFAULT curdate(),
+  `status` enum('Active','Inactive','Graduated') DEFAULT 'Active',
+  `address` text DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`student_id`, `first_name`, `last_name`, `email`, `phone`, `date_of_birth`, `enrollment_date`, `status`, `address`, `created_date`) VALUES
+('S1124', 'dsds', 'sdsdsd', 'sddada@fdfd', '3433534322', '2022-08-02', '2026-02-10', 'Active', 'sdsdd', '2026-02-10 14:51:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('Staff','Lecturer') NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `created_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `role`, `email`, `created_date`) VALUES
+(1, 'staff1', 'staff123', 'Staff', 'staff1@sams.edu', '2026-02-10 06:31:36'),
+(2, 'staff2', 'staff456', 'Staff', 'staff2@sams.edu', '2026-02-10 06:31:36'),
+(3, 'receptionist', 'reception123', 'Staff', 'reception@sams.edu', '2026-02-10 06:31:36'),
+(4, 'mr.saman', 'lecturer123', 'Lecturer', 'mr.saman@sams.edu', '2026-02-10 06:31:36'),
+(5, 'mrs.sandamali', 'lecturer1234', 'Lecturer', 'mrs.sandamali@sams.edu', '2026-02-10 06:31:36'),
+(6, 'mr.rathnayake', 'lecturer12345', 'Lecturer', 'mr.rathnayake@sams.edu', '2026-02-10 06:31:36'),
+(7, 'mrs.fernando', 'fernando123456', 'Lecturer', 'mrs.fernando@sams.edu', '2026-02-10 06:31:36');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `assessments`
+--
+ALTER TABLE `assessments`
+  ADD PRIMARY KEY (`assessment_id`),
+  ADD KEY `enrollment_id` (`enrollment_id`);
+
+--
+-- Indexes for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD PRIMARY KEY (`attendance_id`),
+  ADD KEY `enrollment_id` (`enrollment_id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`course_id`),
+  ADD UNIQUE KEY `course_code` (`course_code`),
+  ADD KEY `lecturer_id` (`lecturer_id`);
+
+--
+-- Indexes for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  ADD PRIMARY KEY (`enrollment_id`),
+  ADD UNIQUE KEY `unique_enrollment` (`student_id`,`course_id`,`semester`,`academic_year`),
+  ADD KEY `course_id` (`course_id`);
+
+--
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`student_id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `assessments`
+--
+ALTER TABLE `assessments`
+  MODIFY `assessment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `attendance`
+--
+ALTER TABLE `attendance`
+  MODIFY `attendance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  MODIFY `enrollment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `assessments`
+--
+ALTER TABLE `assessments`
+  ADD CONSTRAINT `assessments_ibfk_1` FOREIGN KEY (`enrollment_id`) REFERENCES `enrollments` (`enrollment_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `attendance`
+--
+ALTER TABLE `attendance`
+  ADD CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`enrollment_id`) REFERENCES `enrollments` (`enrollment_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `courses`
+--
+ALTER TABLE `courses`
+  ADD CONSTRAINT `courses_ibfk_1` FOREIGN KEY (`lecturer_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `enrollments`
+--
+ALTER TABLE `enrollments`
+  ADD CONSTRAINT `enrollments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `enrollments_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
